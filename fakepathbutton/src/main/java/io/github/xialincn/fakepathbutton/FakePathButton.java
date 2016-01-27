@@ -35,6 +35,7 @@ public class FakePathButton extends RelativeLayout {
     private LayoutInflater mInflater;
 
     private ImageView mSubButtons[];
+    private PathButtonOnClickListener mExternalListeners[];
 
     private int baseAngle = 30;
     private int offset = 30;
@@ -91,6 +92,7 @@ public class FakePathButton extends RelativeLayout {
                 mLeftButton, mLeftMidButton, mMidButton,
                 mMidRightButton, mRightButton
         };
+        mExternalListeners = new PathButtonOnClickListener[mSubButtons.length];
 
         mParentRootLayout = ((ActionBarActivity) getContext()).getWindow().getDecorView().getRootView();
         colorBackup = ((ColorDrawable) mParentRootLayout.getBackground()).getColor();
@@ -239,7 +241,9 @@ public class FakePathButton extends RelativeLayout {
 
         @Override
         public void onClick(View v) {
-            getFadeZoomTogetherAnimations(Arrays.asList(mSubButtons).indexOf(v)).start();
+            int i = Arrays.asList(mSubButtons).indexOf(v);
+            getFadeZoomTogetherAnimations(i).start();
+            mExternalListeners[i].onClick(v);
         }
     }
 
@@ -266,5 +270,14 @@ public class FakePathButton extends RelativeLayout {
         if (isEven) {
             mMainButton.performClick();
         }
+    }
+
+    @Override
+    public void setOnClickListener(OnClickListener listener) {
+        throw new RuntimeException("Please use setmLayoutOnClickListener instead");
+    }
+
+    public void setOnClickListener(int index, PathButtonOnClickListener listener) {
+        mExternalListeners[index] = listener;
     }
 }

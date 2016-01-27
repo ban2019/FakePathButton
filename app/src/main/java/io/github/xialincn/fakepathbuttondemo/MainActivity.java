@@ -5,8 +5,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import io.github.xialincn.fakepathbutton.FakePathButton;
+import io.github.xialincn.fakepathbutton.PathButtonOnClickListener;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -34,6 +36,41 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 button.reset();
+            }
+        });
+
+        button.setOnClickListener(0, new PathButtonOnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Bookmark", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        button.setOnClickListener(1, new PathButtonOnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Face", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        button.setOnClickListener(2, new PathButtonOnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Heart", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        button.setOnClickListener(3, new PathButtonOnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Music", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        button.setOnClickListener(4, new PathButtonOnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Claw", Toast.LENGTH_SHORT).show();
             }
         });
     }
